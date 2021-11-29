@@ -1,4 +1,5 @@
 import math
+from mergeSort import mergeSortDictionary
 """
 Purpose: This code is passed in a file name and searches the immediate folder
 for that file. When this file is found, it parses in its data line by line.
@@ -113,27 +114,6 @@ def getScores():
 
     return uniqueWordsRatings
 
-"""
-Purpose: It gets the highest score
-"""
-def getScoresFromHighestToLowest(uniqueWordsRatings):
-    orderedWords = []
-
-    for unorderedWord in uniqueWordsRatings:
-        wordOrdered = False 
-
-        for i in range(len(orderedWords)):
-            orderedWord = orderedWords[i]
-
-            if uniqueWordsRatings[unorderedWord] >= uniqueWordsRatings[orderedWord]:
-                orderedWords.insert(i, unorderedWord)
-                wordOrdered = True
-                break
-
-        if (not wordOrdered):
-            orderedWords.append(unorderedWord)
-  
-    return orderedWords
     
 """
 Purpose: This function receives a dictionary of words and their associated ratings.
@@ -142,8 +122,8 @@ that is associated with the word. Words with the highest values are sent to the 
 Words are then displayed by the top twenty and bottom twenty.
 """
 def displayScores(uniqueWordsRatings):
-    sortedWords = getScoresFromHighestToLowest(uniqueWordsRatings)
-
+    sortedWords = mergeSortDictionary(uniqueWordsRatings)
+    
     print("Top 20")
     for i in range(21):
         print(f'{uniqueWordsRatings[sortedWords[i]]:.2f} {sortedWords[i]}')
